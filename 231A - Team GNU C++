@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+int main(){
+    int P, V, T, num, flag = 0;
+
+    cin >> num;
+
+    for (int i = 0; i < num; ++i){
+        cin >> P >> V >> T;
+        if ((P + V + T) >= 2)
+            ++flag;
+    }
+
+    cout << flag;
+    //system("pause");
+
+    return 0;
+}
