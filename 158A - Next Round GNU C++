@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main(){
+    int num, place, flag = 0;
+
+    cin >> num >> place;
+
+    int* array = new int[num];
+
+    for (int i = 0; i < num; ++i)
+        cin >> array[i];
+
+    for (int i = 0; i < num; ++i){
+        if ((array[i] >= array[place - 1]) && (array[i] > 0))
+            ++flag;
+    }
+    //cout << flag << endl;
+
+    
+    
+    cout << flag;
+
+    delete[] array;
+    
+    return 0;
+}
