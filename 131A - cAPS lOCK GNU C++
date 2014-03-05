@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+int main(){
+    string input;
+    bool first = false;
+    int caps = 0;
+
+    cin >> input;
+
+    if (input[0] < 'a')
+        first = true;
+
+    for (int i = 1; i < input.length(); ++i){
+        if (input[i] < 'a')
+            ++caps;
+    }
+    if (!first && (caps < (input.length() - 1)))
+        cout << input;
+    else if (first && caps < (input.length() - 1))
+        cout << input;
+    else if (first && caps == input.length()-1){
+        for (int i = 0; i < input.length(); ++i)
+            cout << static_cast<char>(tolower(input[i]));
+    }
+    else{
+        cout << static_cast<char>(toupper(input[0]));
+        for (int i = 1; i < input.length(); ++i)
+            cout << static_cast<char>(tolower(input[i]));
+    }
+    
+    //system("pause");
+
+    return 0;
+}
