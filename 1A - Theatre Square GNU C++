@@ -1,0 +1,31 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+int main() 
+{
+    long long Length, Width, Tile,temp, Tile_L, Tile_W, Answer;
+    
+    for(int i = 0; i < 3; i++){
+        cin >> Tile;
+        if(i == 0)
+            Length = Tile;
+        else if(i == 1)
+            Width = Tile;
+    }
+    
+    
+    Tile_L = Length/Tile;
+    if(Length%Tile != 0)
+        Tile_L++;
+    
+    Tile_W = Width/Tile;
+    if(Width%Tile != 0)
+        Tile_W++;
+    
+    Answer = Tile_L * Tile_W;
+    
+    cout << Answer;
+    return 0;
+}
