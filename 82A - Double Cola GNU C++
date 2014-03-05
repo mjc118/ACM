@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+int main(){
+    double num, index = 0, n = -1, ans = 0;
+
+    cin >> num;
+
+    while (index < num){
+        ++n;
+        index += (pow(2, n) * 5);
+    }
+    
+    while (index >= num){
+        index -= (pow(2, n));
+        ++ans;
+    }
+
+    if (ans == 1)
+        cout << "Howard";
+    else if (ans == 2)
+        cout << "Rajesh";
+    else if (ans == 3)
+        cout << "Penny";
+    else if (ans == 4)
+        cout << "Leonard";
+    else
+        cout << "Sheldon";
+
+    //system("pause");
+
+    return 0;
+}
