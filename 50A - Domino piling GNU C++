@@ -1,0 +1,19 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+int main(){
+    int width, length, area, ans;
+
+    cin >> width >> length;
+
+    area = width * length;
+
+    ans = area / 2;
+    
+
+    cout << ans;
+    return 0;
+}
