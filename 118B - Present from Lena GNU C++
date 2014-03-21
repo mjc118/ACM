@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstdlib>
+#include <string>
+
+using namespace std;
+
+int main(){
+    int input, num = 0;
+
+    cin >> input;
+
+    while (num <= input){
+        for (int i = 0; i < (input - num); ++i)
+            cout << "  ";
+
+        if (num == 0)
+            cout << "0" << endl;
+        else{
+            for (int t = 0; t <= num; ++t)
+                cout << t << " ";
+            for (int t = (num - 1); t > 0; --t)
+                cout << t << " ";
+            cout << "0" << endl;
+        }
+    
+        ++num;
+    }
+
+    num = input - 1;
+
+    while (num >= 0){
+        for (int i = 0; i < (input - num); ++i)
+            cout << "  ";
+        
+        if (num == 0)
+            cout << "0" << endl;
+        else{
+            for (int t = 0; t <= num; ++t)
+                cout << t << " ";
+            for (int t = (num - 1); t > 0; --t)
+                cout << t << " ";
+            cout << "0" << endl;
+        }
+        --num;
+    }
+
+    //system("pause");
+    return 0;
+}
