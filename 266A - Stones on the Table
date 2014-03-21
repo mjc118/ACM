@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+
+int main(){ 
+    int ans, j;
+    string input;
+    
+    cin >> ans;
+    cin >> input;
+    int i;
+    ans = 0;
+    for (i = 0; i < input.length(); ++i){
+        j = i + 1;
+        
+        while ((input[i] == input[j]) && (input[j] != '\0')){
+            input[j] = '\0';
+            ++j;
+            ++ans;
+        }
+    }
+    cout << ans;
+    //system("pause");
+
+    return 0;
+}
