@@ -1,0 +1,15 @@
+str = input()
+danger = False
+count = 1
+for ans in range(0, len(str)):
+    if(str[ans] == str[ans - 1] and ans != 0):
+        count += 1
+    else:
+        count = 1
+    if(count == 7):
+        danger = True
+
+if danger:
+    print("YES")
+else:
+    print("NO")
