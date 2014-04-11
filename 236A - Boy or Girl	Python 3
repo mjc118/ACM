@@ -1,0 +1,19 @@
+import sys
+list = []
+for i in range(26):
+    list.append(False)
+
+string = input()
+
+for i in range(len(string)):
+    list[ord(string[i]) - 97] = True
+
+unique = 0
+for i in range(26):
+    if list[i]:
+        unique += 1
+
+if unique % 2 == 0:
+    print("CHAT WITH HER!")
+else:
+    print("IGNORE HIM!")
