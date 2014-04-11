@@ -1,0 +1,9 @@
+import sys
+string = input()
+list = string.split("+")
+list.sort()
+
+for i in range(len(list)):
+    sys.stdout.write(list[i])
+    if i != len(list) - 1:
+        sys.stdout.write("+")
