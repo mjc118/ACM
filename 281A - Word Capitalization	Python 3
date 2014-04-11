@@ -1,0 +1,4 @@
+import sys
+string = input()
+sys.stdout.write(str.upper(string[0]))
+print(string [1:len(string)])
