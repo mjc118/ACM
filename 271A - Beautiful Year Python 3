@@ -1,0 +1,16 @@
+import sys
+
+user = int(input())
+unique = 0
+
+while True:
+    user += 1
+    unique = 0  
+    for j in range(0,10):
+        if(str(j) in str(user)):
+            unique += 1
+    if(unique == 4):
+        break
+
+print(user)
+
