@@ -1,0 +1,17 @@
+import sys
+
+num_Friends = int(input())
+presents = input()
+list = presents.split(" ")
+outputlist = []
+
+for i in range(num_Friends):
+    outputlist.append(0)
+
+for i in range(len(list)):
+    outputlist[int(list[i]) - 1] =  i + 1
+
+for i in range(len(outputlist)):
+    sys.stdout.write(str(outputlist[i]))
+    sys.stdout.write(" ")
+
