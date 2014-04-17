@@ -1,0 +1,20 @@
+import sys
+
+user = input()
+parameters = user.split(" ")
+string = input()
+list = []
+
+for i in range(len(string)):
+    list.append(string[i])
+
+for i in range(int(parameters[1])):
+    j = 0
+    while(j < int(parameters[0])):
+        if(j < (len(string) - 1) and (list[j] == 'B' and list[j + 1] == 'G')):
+            list[j], list[j + 1] = list[j + 1], list[j]
+            j += 1
+        j += 1
+
+for i in range(int(parameters[0])):
+    sys.stdout.write(list[i])
