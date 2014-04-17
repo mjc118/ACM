@@ -1,0 +1,24 @@
+import sys
+
+soldiers = input()
+heights = input()
+list = heights.split(" ")
+
+numlist = []
+for i in range(len(list)):
+    numlist.append(int(list[i]))
+
+max_num = numlist.index(max(numlist))
+min_num = 0
+
+for i in range(len(list)):
+    if((numlist[i] < numlist[min_num]) or (numlist[i] == numlist[min_num])):
+        min_num = i
+    
+moves = (len(list) - 1) - min_num
+moves += max_num
+
+if(max_num > min_num):
+    moves -= 1
+
+print(moves)
