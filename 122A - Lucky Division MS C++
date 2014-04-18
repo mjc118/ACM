@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+int main(){
+	int input;
+	bool not_found = true;
+	int lucky_nums[14] = {4, 7, 44, 47, 74, 77, 444, 447, 474, 477, 744, 747, 774, 777 };
+	
+	cin >> input;
+
+	for (int i = 0; i < 14; ++i){
+		if (input % lucky_nums[i] == 0){
+			cout << "YES";
+			not_found = false;
+			break;
+		}
+	}
+
+	if (not_found)
+		cout << "NO";
+	
+
+	return 0;
+}
