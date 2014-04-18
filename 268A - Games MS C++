@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+struct uniforms{
+	int home, away;
+};
+
+int main(){	
+	int num_teams, ans = 0;
+	vector<uniforms> teams;
+
+	cin >> num_teams;
+
+	uniforms temp;
+	for (int i = 0; i < num_teams; ++i){
+		teams.push_back(temp);
+		cin >> teams[i].home >> teams[i].away;
+	}
+
+	for (int i = 0; i < num_teams; ++i)
+		for (int j = 0; j < num_teams; ++j){
+			if (teams[i].home == teams[j].away && j != i)
+				++ans;
+		}
+
+	cout << ans;
+	
+	return 0;
+}
