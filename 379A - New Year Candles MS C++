@@ -1,0 +1,40 @@
+
+#include <iostream>
+#include <string>
+#include <cmath>
+
+using namespace std;
+
+bool CandleBurning(int&, int&, int);
+
+int main(){	
+	int candles, hours = 0, burnt_out = 0, ratio;
+	cin >> candles >> ratio;
+
+	while (candles >= ratio){//handles initial candles
+		hours += candles;
+		burnt_out += candles % ratio;
+		candles /= ratio;
+	}
+
+	//handles candles when loop ends once candles went under ratio to recreate new ones
+	hours += candles;
+	burnt_out += candles;
+
+	//handles burntout candles
+	while (CandleBurning(burnt_out, hours, ratio));
+		
+	cout << hours;
+	return 0;
+}
+
+bool CandleBurning(int& burnt, int& Hours, int ratio){
+	int temp;
+	if (burnt >= ratio){
+		Hours += (burnt / ratio);
+		temp = burnt / ratio;
+		burnt = temp + (burnt % ratio);
+		return true;
+	}
+	return false;
+}
