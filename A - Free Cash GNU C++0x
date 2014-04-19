@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+struct time{
+	int hours;
+	int minutes;
+};
+
+int main(){
+	int num_people, cashier = 1, max_cashier = 1;
+	vector<time> customer;
+
+	cin >> num_people;
+
+	time temp;
+	for (int i = 0; i < num_people; ++i){
+		customer.push_back(temp);
+		cin >> customer[i].hours >> customer[i].minutes;
+	}
+
+	for (int i = 0; i < num_people; ++i){
+		int j = 1;
+		max_cashier = 1;
+		while (i + j < num_people && customer[i].hours == customer[i + j].hours
+			&& customer[i].minutes == customer[i + j].minutes){
+			++max_cashier;
+			++j;
+		}		
+		i += --j;
+		if (max_cashier > cashier)
+			cashier = max_cashier;
+	}
+
+	cout << cashier;
+
+	return 0;
+}
