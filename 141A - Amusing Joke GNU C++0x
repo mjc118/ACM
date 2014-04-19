@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+int main(){
+	int position;
+	bool Incorrect = false;
+	string host, guest, jumbled;
+	
+	cin >> host >> guest >> jumbled;
+
+	for (int i = 0; i < host.length(); ++i){
+		position = jumbled.find(host[i]);
+		if (position <= 100 && position >= 0)
+			jumbled.erase(position, 1);
+		else{
+			Incorrect = true;
+			break;
+		}
+	}
+
+	if (!Incorrect){
+		for (int i = 0; i < guest.length(); ++i){
+			position = jumbled.find(guest[i]);
+			if (position <= 100 && position >= 0)
+				jumbled.erase(position, 1);
+			else{
+				Incorrect = true;
+				break;
+			}
+		}
+	}
+
+	if (Incorrect)
+		cout << "NO";
+	else if (jumbled.length() > 0)
+		cout << "NO";
+	else
+		cout << "YES";
+
+	return 0;
+}
