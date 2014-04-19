@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+int main(){
+	int j = 0;
+	string input, hello = "hello";
+	bool found = false;
+
+	cin >> input;
+
+	for (int i = 0; i < input.length(); ++i){
+		if (hello[j] == input[i])
+			++j;
+		if (j == 5){
+			found = true;
+			break;
+		}
+	}
+
+	if (found)
+		cout << "YES";
+	else
+		cout << "NO";
+		
+	return 0;
+}
