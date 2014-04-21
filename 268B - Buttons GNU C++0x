@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+
+using namespace std;
+
+int main(){
+	int input, num = 2, ans = 0;
+	bool One_Button = false;
+	
+	cin >> input;
+	
+	if (input == 1)
+		One_Button = true;
+
+	ans += --input;
+	
+	while(--input > 0){
+		ans += input * num;
+		++num;
+	}
+	
+	ans += num;
+	
+	if (One_Button)
+		cout << "1";
+	else
+		cout << ans;
+
+	return 0;
+}
