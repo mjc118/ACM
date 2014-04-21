@@ -1,0 +1,36 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	int height, input, ans = 0;
+	vector<int> months(12, 0);
+
+	cin >> height;
+
+	for (int i = 0; i < 12; ++i){
+		cin >> input;
+		months[i] = input;
+	}
+
+	sort(months.begin(), months.end());
+
+	input = 0;//used for sum
+
+	while (!months.empty() && input < height){
+		input += months.back();
+		months.pop_back();
+		++ans;
+	}
+
+	if (input < height)
+		cout << "-1";
+	else
+		cout << ans;
+
+	return 0;
+}
