@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	string input;
+
+	cin >> input;
+
+	if (input[0] != '-');
+	else if (input[input.length()] != '-' && (input[input.length() - 2] > input[input.length() - 1]))
+		input.erase(input.length() - 2, 1);
+	else
+		input.erase(input.length() - 1, 1);
+
+	if (input == "-0" || input == "-")
+		input = "0";
+
+	cout << input;
+
+	return 0;
+}
