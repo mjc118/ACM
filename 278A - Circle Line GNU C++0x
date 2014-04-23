@@ -1,0 +1,41 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int sum(vector<int>&, int, int);
+
+int main(){
+	int num_stations, begin, end, input;
+	vector<int> stations;
+
+	cin >> num_stations;
+
+	for (int i = 0; i < num_stations; ++i){
+		cin >> input;
+		stations.push_back(input);
+	}
+
+	cin >> begin >> end;
+
+	cout << min(sum(stations, begin, end), sum(stations, end, begin));
+
+	return 0;
+}
+
+int sum(vector<int>& station, int start, int finish){
+	int sum = 0;
+	
+	for (int i = start - 1; i != finish - 1; ++i){
+		if (i == station.size())
+			i = 0;
+		if (i != finish - 1)
+			sum += station[i];
+		else
+			--i;
+	}
+	return sum;
+}
