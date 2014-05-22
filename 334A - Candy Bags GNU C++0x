@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	int brothers, maxcandy;
+	
+	cin >> brothers;
+
+	maxcandy = brothers * brothers;
+
+	for (int i = 1; i <= brothers; ++i){
+		for (int j = 0; j < brothers / 2; ++j){
+			if (j == brothers/2 - 1)
+				cout << (i + j * brothers) << " "
+				<< (maxcandy - ((i + j *brothers) - 1));
+			else
+				cout << (i + j * brothers) << " " 
+					<< (maxcandy - ((i + j *brothers) - 1)) << " ";
+		}
+		cout << endl;
+	}
+}
