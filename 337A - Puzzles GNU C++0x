@@ -1,0 +1,31 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+    int students, puzzles, temp, minimum;
+    vector <int> arrpuzz;
+
+    cin >> students >> puzzles;
+    
+    for (int i = 0; i < puzzles; ++i){
+        cin >> temp;
+        arrpuzz.push_back(temp);
+    }
+
+    sort(arrpuzz.begin(), arrpuzz.end());
+    
+    int i = 0;
+    minimum = arrpuzz[students - 1] - arrpuzz[i];
+    ++i;
+
+    while (i + (students - 1) < puzzles){
+        minimum = min(minimum, (arrpuzz[i + (students - 1)] - arrpuzz[i]));
+        ++i;
+    }
+
+    cout << minimum;
+}
