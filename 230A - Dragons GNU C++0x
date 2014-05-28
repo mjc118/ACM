@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Dragons{
+	int Strength;
+	int Reward;
+};
+
+int main(){
+	int KStr, numDragon;
+	bool Continue = true;
+
+	cin >> KStr >> numDragon;
+
+	vector<Dragons> enemies;
+
+	for (int i = 0; i < numDragon; ++i){
+		Dragons temp;
+		cin >> temp.Strength >> temp.Reward;
+		enemies.push_back(temp);
+	}
+
+	int temp = enemies.size();
+	Dragons swap;
+	while (Continue){
+		Continue = false;
+		for (int i = 0; i < temp - 1; ++i){
+			if (enemies[i].Strength > enemies[i + 1].Strength){
+				swap = enemies[i];
+				enemies[i] = enemies[i + 1];
+				enemies[i + 1] = swap;
+				Continue = true;
+			}
+		}
+	}
+
+	int i;
+	for (i = 0; i < temp; ++i){
+		if (enemies[i].Strength < KStr){
+			KStr += enemies[i].Reward;
+		}
+		else
+			break;
+	}
+
+	if (i == numDragon)
+		cout << "YES";
+	else
+		cout << "NO";
+
+}
