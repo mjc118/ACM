@@ -1,0 +1,24 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	int num_cubes, input;
+
+	cin >> num_cubes;
+
+	vector <int> box;
+
+	for (int i = 0; i < num_cubes; ++i){
+		cin >> input;
+		box.push_back(input);
+	}
+
+	sort(box.begin(), box.end());
+
+	for (int i = 0; i < num_cubes; ++i)
+		cout << box[i] << " ";
+}
