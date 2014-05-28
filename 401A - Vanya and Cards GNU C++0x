@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	int num_cards, limit, sum = 0, n;
+	bool Continue = true;
+
+	cin >> num_cards >> limit;
+
+	for (int i = 0; i < num_cards; ++i){
+		cin >> n;
+		sum += n;
+	}
+
+	n = 2;//used to calculate num_cards
+	num_cards = 1;//how many cards he needs
+
+	if (abs(sum) <= limit)
+		Continue = false;
+	while (Continue){
+		++num_cards;
+		if (abs(sum) <= limit * n)
+			Continue = false;
+		++n;
+	}
+
+	if (sum == 0)
+		cout << "0";
+	else
+		cout << num_cards;
+}
