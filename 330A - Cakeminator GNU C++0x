@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	int Rows, Cols;
+	char temp;
+
+	cin >> Rows >> Cols;
+
+	int** ary = new int*[Rows];
+	for (int i = 0; i < Rows; ++i)
+		ary[i] = new int[Cols];
+
+	//filling array
+	for (int i = 0; i < Rows; ++i)
+		for (int j = 0; j < Cols; ++j){
+			cin >> temp;
+			ary[i][j] = temp;
+		}
+
+	//handles calculating what rows are completely free
+	int count;
+	for (int i = 0; i < Rows; ++i){
+		count = 0;
+		for (int j = 0; j < Cols; ++j){
+			if (ary[i][j] == 'S')
+				continue;
+			if (ary[i][j] == '.')
+				++count;
+		}
+		if (count == Cols)
+			for (int j = 0; j < Cols; ++j)
+				ary[i][j] = 'o';
+	}
+
+	//handles calculating what columns are completely free
+	for (int j = 0; j < Cols; ++j){
+		count = 0;
+		for (int i = 0; i < Rows; ++i){
+			if (ary[i][j] == 'S')
+				continue;
+			if (ary[i][j] == '.' || ary[i][j] == 'o')
+				++count;
+		}
+		if (count == Rows)
+			for (int i = 0; i < Rows; ++i)
+				ary[i][j] = 'o';
+	}
+	
+	//counts how many pieces we ate
+	count = 0;
+	for (int i = 0; i < Rows; ++i)
+		for (int j = 0; j < Cols; ++j)
+			if (ary[i][j] == 'o')
+				++count;
+
+	cout << count;
+}
