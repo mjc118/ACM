@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+int main(){
+	int num_blocks, input, Highest, count;
+
+	cin >> num_blocks;
+
+	vector<int> blocks;
+
+	for (int i = 0; i < num_blocks; ++i){
+		cin >> input;
+		blocks.push_back(input);
+	}
+	
+	sort(blocks.begin(), blocks.end());
+
+	Highest = 1;//keeps track of max tower height
+	count = 1;//keeps track of quantity of unique numbers
+	input = 1;//keeps track of how many times a number appears in a row
+	for (int i = 1; i < num_blocks; ++i){
+		if (blocks[i] == blocks[i - 1]){
+			++input;
+			Highest = max(Highest, input);
+		}
+		else{
+			++count;
+			input = 1;
+		}
+	}
+
+	cout << Highest << " " << count;
+}
