@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int num_cards, begin, end, S = 0, D = 0;
+
+            num_cards = Convert.ToInt32(Console.ReadLine());
+
+            int[] cards = (Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray());
+            begin = 0;
+            end = num_cards - 1;
+
+            bool sTurn = true;
+            while (true)
+            {
+                if (end < begin)
+                    break;
+                if (cards[end] >= cards[begin])
+                {
+                    if (sTurn)
+                        S += cards[end];
+                    else
+                        D += cards[end];
+                    cards[end] = 0;
+                    --end;
+                }
+                else
+                {
+                    if (sTurn)
+                        S += cards[begin];
+                    else
+                        D += cards[begin];
+                    cards[begin] = 0;
+                    ++begin;              
+                }
+                sTurn = !sTurn;
+            }
+            Console.WriteLine("{0} {1}", S, D);
+        }
+    }
+}
