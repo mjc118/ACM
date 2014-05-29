@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+struct Crew{
+	string Name;
+	string Role;
+};
+
+int main(){
+	int num_crew;
+	string input, input2;
+	Crew temp;
+	vector<Crew> Passengers;
+	string Members[5] = { "rat", "child", "woman", "man", "captain" };
+
+	cin >> num_crew;
+
+	for (int i = 0; i < num_crew; ++i){
+		cin >> input >> input2;
+		temp.Name = input;
+		temp.Role = input2;
+		Passengers.push_back(temp);
+	}
+
+	for (int j = 0; j < 5; ++j){
+		for (int i = 0; i < num_crew; ++i){
+			if (Members[j] == "child" || Members[j] == "woman")
+				if (Passengers[i].Role == "child" || Passengers[i].Role == "woman")
+					cout << Passengers[i].Name << endl;
+			if (Passengers[i].Role == Members[j] && Members[j] != "child")
+				cout << Passengers[i].Name << endl;
+		}
+		if (Members[j] == "child")
+			++j;
+	}
+}
