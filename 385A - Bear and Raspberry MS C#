@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int days, rental_fee, ans = 0;
+            
+
+            int[] temp = (Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray());
+
+            days = temp[0];
+            rental_fee = temp[1];
+
+            int[] prices = (Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray());
+
+            for (int i = 0; i < days - 1; ++i)
+            {
+                ans = Math.Max(ans, (prices[i] - prices[i + 1] - rental_fee));
+            }
+            Console.WriteLine(ans);
+        }
+    }
+}
