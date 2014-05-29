@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+struct Restaurants
+{
+    public int Res_Joy;
+    public int Time;
+
+    public void SetJoy(int j) { Res_Joy = j; }
+    public void SetTime(int t) { Time = t; }
+}
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int num_places, TimeAllotted, max_joy;
+            List<Restaurants> Place = new List<Restaurants>();
+            Restaurants tempRes = new Restaurants();
+            int[] temp = new int[2];
+            
+            if (true)//done so i can reuse "Digits" in below loop(scope issues)
+            {
+                var Digits = Console.ReadLine().Split(' ');
+                temp = Digits.Select(n => Convert.ToInt32(n)).ToArray();
+                num_places = temp[0];
+                TimeAllotted = temp[1];
+            }
+
+            for (int i = 0; i < num_places; ++i)
+            {
+                var Digits = Console.ReadLine().Split(' ');
+                temp = Digits.Select(n => Convert.ToInt32(n)).ToArray();
+                tempRes.SetJoy(temp[0]);
+                tempRes.SetTime(temp[1]);
+                Place.Add(tempRes);
+            }
+
+            //used to set joy's initial value since it can be negative
+            if(Place[0].Time > TimeAllotted)
+                max_joy = Place[0].Res_Joy - (Place[0].Time - TimeAllotted);
+            else
+                max_joy = Place[0].Res_Joy;
+
+            //handles rest of Restaurants
+            for (int i = 1; i < num_places; ++i)
+            {
+                if (Place[i].Time > TimeAllotted)
+                    max_joy = Math.Max(max_joy, Place[i].Res_Joy - (Place[i].Time - TimeAllotted));
+                else
+                    max_joy = Math.Max(max_joy, Place[i].Res_Joy);
+            }
+            Console.WriteLine(max_joy);
+        }
+    }
+}
