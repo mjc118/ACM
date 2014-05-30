@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            string number = Console.ReadLine();
+            int length = number.Length;
+            bool Magic = true;
+
+            int i = 0;
+            if (number[i] != '1') 
+                Magic = false;
+            if(Magic)
+                for (i = 1; i < length; ++i)
+                {
+                    if (number[i] != '4' && number[i] != '1')
+                    {
+                        Magic = false;
+                        break;
+                    }
+                    if (number[i] == '4')
+                    {
+                        if (i < length - 1)
+                        {
+                            if (number[i - 1] == '1' && number[i + 1] == '4')
+                                ++i;
+                            else if (number[i - 1] == '4' && number[i - 2] == '4')
+                            {
+                                Magic = false;
+                                break;
+                            }
+                        }
+                        else if (number[i - 1] == '4' && number[i - 2] == '4')
+                        {
+                            Magic = false;
+                            break;
+                        }
+                    }
+                    
+                }
+            if (Magic)
+                Console.WriteLine("YES");
+            else
+                Console.WriteLine("NO");
+        
+        }
+    }
+}
