@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+public struct Time
+{
+    public int hours;
+    public int minutes;
+}
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            Time Current_time, Time_slept, ans;
+            string input, hours, minutes;
+
+            input = Console.ReadLine();
+            Current_time.hours = int.Parse(input.Substring(0, 2));
+            Current_time.minutes = int.Parse(input.Substring(3));
+
+            input = Console.ReadLine();
+            Time_slept.hours = int.Parse(input.Substring(0, 2));
+            Time_slept.minutes = int.Parse(input.Substring(3));
+
+            ans.minutes = Current_time.minutes - Time_slept.minutes;
+            if (ans.minutes < 0)
+            {
+                ans.minutes = 60 + ans.minutes;
+                --Current_time.hours;
+            }
+
+            ans.hours = Current_time.hours - Time_slept.hours;
+            if (ans.hours < 0)
+                ans.hours = 24 + ans.hours;
+
+            hours = ans.hours.ToString("00");
+            minutes = ans.minutes.ToString("00");
+            Console.WriteLine("{0}:{1}", hours, minutes);
+        }
+    }
+}
