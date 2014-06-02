@@ -1,0 +1,31 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] input;
+            int chips = 1;
+            input = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+
+            while (true)
+            {
+                if (chips == input[0] + 1)
+                    chips = 1;
+                if (input[1] - chips >= 0)
+                    input[1] -= chips;
+                else
+                    break;
+
+                ++chips;
+            }
+            Console.WriteLine(input[1]);
+        }
+    }
+}
