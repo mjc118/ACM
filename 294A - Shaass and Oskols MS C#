@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+public struct Time
+{
+    public int hours;
+    public int minutes;
+}
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int wires, shots, left, right;
+            int[] birds;
+            int[] temp = new int[2];
+
+            wires = Convert.ToInt32(Console.ReadLine());
+            birds = new int[wires];
+
+            birds = ((Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray());
+
+            shots = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < shots; ++i)
+            {
+                temp = ((Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray());
+                left = temp[1] - 1;
+                right = birds[temp[0] - 1] - temp[1];
+
+                if (temp[0] != 1)
+                    birds[temp[0] - 2] += left;
+                if (temp[0] != wires)
+                    birds[temp[0]] += right;
+                birds[temp[0] - 1] = 0;
+            }
+
+            for (int i = 0; i < wires; ++i)
+                Console.WriteLine(birds[i]);
+        }
+    }
+}
