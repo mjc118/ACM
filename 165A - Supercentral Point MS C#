@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+public struct Coordinate
+{
+    public int X;
+    public int Y;
+}
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int num_points, count = 0;
+            int[] temp = new int[2];
+            bool East, West, North, South;
+            List<Coordinate> Coordinates = new List<Coordinate>();
+            Coordinate Ctemp;
+
+            num_points = Convert.ToInt32(Console.ReadLine());
+            
+            for (int i = 0; i < num_points; ++i)
+            {
+                temp = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+                Ctemp.X = temp[0];
+                Ctemp.Y = temp[1];
+                Coordinates.Add(Ctemp);
+            }
+
+            for (int i = 0; i < num_points; ++i)
+            {
+                North = South = East = West = false;
+                for (int j = 0; j < num_points; ++j)
+                {
+                    if (j == i)
+                        continue;
+                    if (Coordinates[i].X == Coordinates[j].X && Coordinates[i].Y > Coordinates[j].Y)
+                        South = true;
+                    else if (Coordinates[i].X == Coordinates[j].X && Coordinates[i].Y < Coordinates[j].Y)
+                        North = true;
+
+                    if (Coordinates[i].Y == Coordinates[j].Y && Coordinates[i].X > Coordinates[j].X)
+                        East = true;
+                    else if (Coordinates[i].Y == Coordinates[j].Y && Coordinates[i].X < Coordinates[j].X)
+                        West = true;
+                }
+                if (North && South && East && West)
+                    ++count;
+            }
+            Console.WriteLine(count);
+        }
+    }
+}
