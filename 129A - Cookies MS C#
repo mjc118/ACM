@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int num_bags, Evens = 0, Odds = 0;
+            int[] bags;
+
+            num_bags = Convert.ToInt32(Console.ReadLine());
+
+            bags = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+
+            for (int i = 0; i < num_bags; ++i)
+                if (bags[i] % 2 == 0)
+                    ++Evens;
+                else
+                    ++Odds;
+
+            if (Odds % 2 == 1)
+                Console.WriteLine(Odds);
+            else
+                Console.WriteLine(Evens);
+        }
+    }
+}
+
