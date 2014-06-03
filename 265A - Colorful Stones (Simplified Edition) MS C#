@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int position = 1;
+            string instructions, stones;
+
+            stones = Console.ReadLine();
+            instructions = Console.ReadLine();
+
+            int I_length = instructions.Length;
+            int S_length = stones.Length;
+            for (int i = 0; i < I_length; ++i)
+                if(position < S_length)
+                    if (instructions[i] == stones[position - 1])
+                        ++position;
+
+            Console.WriteLine(position);
+        }
+    }
+}
+
