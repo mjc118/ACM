@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] problems;
+            int[] correct;
+            int[] incorrect;
+            int ans = -1;
+
+            problems = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            correct = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            incorrect = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            Array.Sort(correct);
+            Array.Sort(incorrect);
+
+            if (incorrect[0] <= correct[problems[0] - 1] || incorrect[0] <= correct[0] * 2)
+                ans = -1;
+            else if (correct[0] * 2 <= correct[problems[0] - 1])
+                ans = correct[problems[0] - 1];
+            else
+                ans = correct[problems[0] - 1] + Math.Abs(correct[problems[0] - 1] - correct[0] * 2);
+
+            Console.WriteLine(ans);
+        }
+    }
+}
+
