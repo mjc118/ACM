@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int ans = 0, count = 0;
+            int[] input;
+            string[] digits;
+
+            input = (Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray());
+
+            digits = Console.ReadLine().Split(' ');
+
+            for (int i = 0; i < input[0]; ++i)
+            {
+                int length = digits[i].Length;
+                for (int j = 0; j < length; ++j)
+                {
+                    int temp = Convert.ToInt32(digits[i][j] - 48);
+                    if (count > input[1])
+                        break;
+                    if (temp == 4 || temp == 7)
+                        ++count;
+                }
+                if (count <= input[1])
+                    ++ans;
+
+                count = 0;                
+            }
+
+            Console.WriteLine(ans);
+        }
+    }
+}
