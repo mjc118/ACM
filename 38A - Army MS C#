@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int ranks, Years = 0;
+            int[] Years_req;
+            int[] Start_End;
+
+            ranks = Convert.ToInt32(Console.ReadLine());
+
+            Years_req = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+
+            Start_End = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+
+            for (int i = Start_End[0] - 1; i < Start_End[1] - 1; ++i)
+                Years += Years_req[i];
+
+            Console.WriteLine(Years);
+        }
+    }
+}
