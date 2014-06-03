@@ -10,7 +10,7 @@ namespace ConsoleApplication1
     {
         public static void Main()
         {
-            int k, letters = 0;
+            int k;
             int[] alphabet = new int[26];
             int[] num_letters = new int[26];
             bool Solution = true, Action = true;
