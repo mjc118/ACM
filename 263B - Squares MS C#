@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] num_squares;//[0] = num_squares, [1] = num squares point must "at most" be in
+            int[] squares;//holds squares dimensions
+            bool possible = true;
+
+            num_squares = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+
+            squares = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+
+            Array.Sort(squares);
+
+            int i = 0, temp = num_squares[0];
+
+            if (num_squares[1] > num_squares[0])
+                possible = false;
+            else
+                for (i = 0; i < num_squares[0]; ++i)
+                    if (temp <= num_squares[1])
+                        break;
+                    else
+                        --temp;
+
+            if (possible)
+                Console.WriteLine("{0} {1}", squares[i], 0);
+            else
+                Console.WriteLine("-1");
+        }
+    }
+}
+
