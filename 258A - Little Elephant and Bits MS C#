@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            string binary;
+            bool Deleted = false;
+            
+            binary = Console.ReadLine();
+
+            int length = binary.Length;
+            for (int i = 0; i < length; ++i)
+                if (!Deleted && i == length - 1) ;
+                //do nothing
+                else if (!Deleted)
+                    if (binary[i] != '0')
+                        Console.Write(binary[i]);
+                    else
+                        Deleted = true;
+                else
+                    Console.Write(binary[i]);
+
+        }
+    }
+}
