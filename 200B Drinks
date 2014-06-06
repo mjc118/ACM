@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            double drinks = 0, ans = 0, quantity = 0;
+
+            drinks = Convert.ToInt32(Console.ReadLine());
+            double[] percentages = (Console.ReadLine().Split(' ').Select(n => Convert.ToDouble(n)).ToArray());
+
+            for (int i = 0; i < drinks; ++i)
+                quantity += percentages[i];
+
+            ans = ((quantity / (100.0 * drinks)) * 100.0);
+
+            //codeforces was displaying a decimal in a double as a comma
+            string temp = ans.ToString().Replace(',', '.');
+            Console.WriteLine(temp);
+        }
+    }
+}
