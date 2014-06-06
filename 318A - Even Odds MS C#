@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            long[] parameters;
+            long Even_Start;
+            parameters = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt64(n)).ToArray();
+
+            if (parameters[0] % 2 == 0)
+                Even_Start = (parameters[0] / 2);
+            else
+                Even_Start = ((parameters[0] + 1)/2);
+
+            if (parameters[1] > Even_Start)
+                Console.WriteLine((parameters[1] - Even_Start) * 2);
+            else
+                Console.WriteLine((parameters[1] * 2) - 1);
+    
+        }
+    }
+}
+
