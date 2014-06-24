@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int num_neg, zero_pos, num_pos, position = 0, length;
+            int[] parameters;
+            List<int> negatives = new List<int>();
+            List<int> zero = new List<int>();
+            List<int> positive = new List<int>();
+
+            num_neg = Convert.ToInt32(Console.ReadLine());
+            parameters = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+            Array.Sort(parameters);
+
+            zero_pos = Array.IndexOf(parameters, 0, 0);
+            length = parameters.Length;
+            num_neg = zero_pos;
+            num_pos = (length - 1) - zero_pos;
+
+            //handles if we don't have any positive numbers or
+            if (num_pos == 0 && num_neg >= 3)
+            {
+                positive.Add(parameters[position]);
+                positive.Add(parameters[position + 1]);
+                position += 2;
+                num_neg -= 2;
+            }
+            //handles if we have a even amount of negative numbers
+            if (num_neg % 2 == 0)
+            {
+                zero.Add(parameters[position]);
+                ++position;
+                --num_neg;
+            }
+
+            //fills our arrays
+            while (position < length)
+            {
+                if (parameters[position] < 0)
+                {
+                    negatives.Add(parameters[position]);
+                    ++position;
+                }
+                else if (parameters[position] == 0)
+                {
+                    zero.Add(parameters[position]);
+                    ++position;
+                }
+                else
+                {
+                    positive.Add(parameters[position]);
+                    ++position;
+                }
+            }
+
+            //prints our <0 items
+            Console.Write("{0} ", negatives.Count);
+            foreach (int i in negatives)
+            {
+                Console.Write("{0} ", i);
+            }
+            Console.WriteLine();
+                
+            //prints our >0 items    
+            Console.Write("{0} ", positive.Count);
+            foreach (int i in positive)
+            {
+                Console.Write("{0} ", i);
+            }
+            Console.WriteLine();
+
+            //prints our == 0 items
+            Console.Write("{0} ", zero.Count);
+            foreach (int i in zero)
+            {
+                Console.Write("{0} ", i);
+            }
+            Console.WriteLine();            
+        }
+    }
+}
