@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int Even = 0, Odd = 0, indice = 0;
+            bool Eve = false, Od = false;
+
+            Console.ReadLine();
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            foreach (int i in parameters)
+            {
+                if (Even >= 2)
+                {
+                    Eve = true;
+                    break;
+                }
+                else if (Odd >= 2)
+                {
+                    Od = true;
+                    break;
+                }
+                if (i % 2 == 0)
+                    ++Even;
+                else
+                    ++Odd;
+            }
+
+            //handles if we have an extremely small number set
+            if (Even >= 2)
+                Eve = true;
+            else
+                Od = true;
+
+            if(Eve)
+                for(int i = 0; i < parameters.Length; ++i)
+                {
+                    if (parameters[i] % 2 != 0)
+                    {
+                        indice = i;
+                        break;
+                    }
+                }
+            else
+                for (int i = 0; i < parameters.Length; ++i)
+                {
+                    if (parameters[i] % 2 == 0)
+                    {
+                        indice = i;
+                        break;
+                    }
+                }
+
+            Console.WriteLine(++indice);
+        }
+    }
+}
