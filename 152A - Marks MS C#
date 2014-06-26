@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int Success = 0;
+            int[] parameters;
+            List<string> students = new List<string>();
+
+            parameters = (Console.ReadLine().Split(' ')).Select(n => Convert.ToInt32(n)).ToArray();
+
+            int[] StuSuccess = new int[parameters[0]];
+
+            for (int i = 0; i < parameters[0]; ++i)
+            {
+                students.Add(Console.ReadLine());
+            }
+
+            //x is used to keep track of whether a student is better than the rest
+            int x = 0;
+            for(int i = 0; i < parameters[1]; ++i)//iterates through subjects
+                for (int j = 0; j < parameters[0]; ++j)//double for loop compares each student to every other one
+                {
+                    for (x = 0; x < parameters[0]; ++x)
+                    {
+                        if (students[j][i] >= students[x][i]) ;
+                        else
+                            break;
+                    }
+                    if (x == parameters[0])
+                        ++StuSuccess[j];
+                }
+
+            for (int i = 0; i < parameters[0]; ++i)
+                if (StuSuccess[i] >= 1)
+                    ++Success;
+
+            Console.WriteLine(Success);
+        }
+    }
+}
