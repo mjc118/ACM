@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int[] hook_costs;
+            int num_guests, profit = 0, incr = 0;
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            hook_costs = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            num_guests = Convert.ToInt32(Console.ReadLine());
+
+            Array.Sort(hook_costs);
+
+            for (int i = 0; i < num_guests; ++i)
+            {
+                if (incr < hook_costs.Length)
+                {
+                    profit += hook_costs[incr];
+                    ++incr;
+                }
+                else
+                    profit -= parameters[1];
+            }
+
+            Console.WriteLine(profit);
+        }
+    }
+}
