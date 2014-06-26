@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int pages, incr;
+
+            pages = Convert.ToInt32(Console.ReadLine());
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            for (incr = 0; incr < 7; ++incr)
+            {
+                pages -= parameters[incr];
+                if (pages <= 0)
+                    break;
+
+                if (incr == 6)
+                    incr = -1;
+            }
+
+            Console.WriteLine(++incr);
+        }
+    }
+}
