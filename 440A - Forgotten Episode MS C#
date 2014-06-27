@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            long num;//represents number of integers in the array
+            long ActualSum, IntendedSum;
+            long[] parameters;
+
+            num = Convert.ToInt64(Console.ReadLine());
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt64(n)).ToArray();
+
+            IntendedSum = (num*(1 + num)) / 2;//Find the sum if the number wasn't missing
+
+            ActualSum = parameters.Sum();
+
+            Console.WriteLine(IntendedSum - ActualSum);            
+        }
+    }
+}
