@@ -1,5 +1,7 @@
 ACM
 ===
+These problems are used as just one of the sources that we use to practice problem solving/algorithm usage for competitions. 
+
 
 CodeForcesProblems
 
