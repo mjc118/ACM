@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int num_inputs;
+            string input;
+            Dictionary<string, int> mymap = new Dictionary<string, int>();
+
+            num_inputs = Convert.ToInt32(Console.ReadLine());
+
+            string[] answer = new string[num_inputs];
+
+            for (int i = 0; i < num_inputs; ++i)
+            {
+                input = Console.ReadLine();
+                try
+                {
+                    mymap.Add(input, 0);
+                    answer[i] = "OK";
+                }
+                catch (ArgumentException)
+                {
+                    answer[i] = input + Convert.ToString(++mymap[input]);
+                }
+            }
+
+            for (int i = 0; i < num_inputs; ++i)
+                Console.WriteLine(answer[i]);            
+        }
+    }
+}
