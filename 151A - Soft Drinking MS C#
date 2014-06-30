@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int[] ingredients = new int[3];//handles milimeters, limes, and salt variables
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            ingredients[0] = parameters[1] * parameters[2];//quantity of drink available for toasts
+            ingredients[0] /= parameters[6];
+
+            ingredients[1] = parameters[3] * parameters[4];//limes available for toasts
+
+            ingredients[2] = parameters[5] / parameters[7];//salt available for toasts
+
+            Array.Sort(ingredients);
+
+            Console.WriteLine(Math.Min(ingredients[0], ingredients[1]) / parameters[0]);
+        }
+    }
+}
