@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int[] buttons;
+            int[] buttons_pushed;
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            buttons_pushed = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            buttons = new int[parameters[0]];
+
+            for(int i = 0; i < parameters[1]; ++i)
+                for (int j = buttons_pushed[i] - 1; j < parameters[0]; ++j)
+                {
+                    if (buttons[j] == 0)
+                        buttons[j] = buttons_pushed[i];
+                    else
+                        break;
+                }
+
+            for (int i = 0; i < parameters[0]; ++i)
+                Console.Write("{0} ", buttons[i]);
+        }
+    }
+}
