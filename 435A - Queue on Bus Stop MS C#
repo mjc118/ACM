@@ -1,0 +1,51 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters, groups;
+            int num_buses = 0, bus_space;
+            
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            groups = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            int i = 0;
+            bus_space = parameters[1];
+            while (i < parameters[0])
+            {
+                if (bus_space - groups[i] >= 0)
+                {
+                    if (bus_space - groups[i] == 0)
+                    {                       
+                        ++num_buses;
+                        bus_space = parameters[1];
+                        ++i;
+                    }
+                    else
+                    {
+                        bus_space -= groups[i];
+                        ++i;
+                    }
+                }
+                else
+                {
+                    ++num_buses;
+                    bus_space = parameters[1];
+                }
+            }
+
+            if (bus_space != parameters[1])
+                ++num_buses;
+
+            Console.WriteLine(num_buses);
+        }
+    }
+}
