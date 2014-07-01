@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int num_Fgears, num_Bgears, Max = 0, num_max = 0;
+            int[] Fgears, Bgears;
+
+            num_Fgears = Convert.ToInt32(Console.ReadLine());
+            Fgears = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            num_Bgears = Convert.ToInt32(Console.ReadLine());
+            Bgears = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            for(int i = num_Bgears - 1; i >= 0; --i)
+                for (int j = 0; j < num_Fgears; ++j)
+                {
+                    if (Bgears[i] % Fgears[j] == 0)
+                    {
+                        if (Bgears[i] / Fgears[j] == Max)
+                            ++num_max;
+                        else
+                        {
+                            Max = Math.Max(Max, Bgears[i] / Fgears[j]);
+                            if (Bgears[i] / Fgears[j] == Max)
+                                num_max = 1;
+                        }
+                        break;
+                    }
+                    if (Bgears[i] / Fgears[j] < Max)
+                        break;
+                }
+
+            Console.WriteLine(num_max);          
+        }
+    }
+}
