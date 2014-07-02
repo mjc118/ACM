@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int length, distinct;
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            length = parameters[0];
+            distinct = parameters[1];
+
+            if (length < distinct || (distinct == 1 && length > 1))
+                Console.WriteLine("-1");
+            else
+            {
+                distinct -= 2;
+                if(distinct > 0)//if distinct goes negative we don't want length being increased
+                    length -= distinct;
+
+                //to handle if length is 1, so as to not write out "ab"
+                if(length > 1)
+                    for (int i = 0; i < length/2; ++i)
+                        Console.Write("ab");
+
+                if (length % 2 != 0)
+                    Console.Write("a");
+               
+                for (int i = 99; i < distinct + 99; ++i)
+                    Console.Write(Convert.ToChar(i));
+            }
+        }
+    }
+}
