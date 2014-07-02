@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int[] primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53 };
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            if (parameters[1] != primes[Array.IndexOf(primes, parameters[0]) + 1])
+                Console.WriteLine("NO");
+            else
+                Console.WriteLine("YES");          
+        }
+    }
+}
