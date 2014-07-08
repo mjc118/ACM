@@ -1,0 +1,80 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            string[] parameters;
+            int X, Y, moves = 0;
+            List<string> instructions = new List<string>();
+            parameters = new string[2];
+
+            parameters[0] = Console.ReadLine();
+            parameters[1] = Console.ReadLine();
+
+            //get the distance between our two coordinates
+            X = Convert.ToInt32(parameters[0][0]) - Convert.ToInt32(parameters[1][0]);
+            Y = Convert.ToInt32(parameters[0][1]) - Convert.ToInt32(parameters[1][1]);
+
+            while (X != 0 || Y != 0)
+            {
+                if (X < 0 && Y > 0)
+                {
+                    instructions.Add("RD");
+                    ++X;
+                    --Y;
+                }
+                else if (X == 0 && Y > 0)
+                {
+                    instructions.Add("D");
+                    --Y;
+                }
+                else if (X > 0 && Y > 0)
+                {
+                    instructions.Add("LD");
+                    --X;
+                    --Y;
+                }
+                else if (X < 0 && Y == 0)
+                {
+                    instructions.Add("R");
+                    ++X;
+                }
+                else if (X < 0 && Y < 0)
+                {
+                    instructions.Add("RU");
+                    ++X;
+                    ++Y;
+                }
+                else if (X > 0 && Y < 0)
+                {
+                    instructions.Add("LU");
+                    --X;
+                    ++Y;
+                }
+                else if (X == 0 && Y < 0)
+                {
+                    instructions.Add("U");
+                    ++Y;
+                }
+                else
+                {
+                    instructions.Add("L");
+                    --X;
+                }
+                ++moves;
+            }
+
+            Console.WriteLine(moves);
+
+            for (int i = 0; i < moves; ++i)
+                Console.WriteLine(instructions[i]);
+        }
+    }
+}
