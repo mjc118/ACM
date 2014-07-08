@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters, movement, duplicates;
+            int moves = 0, current;
+            bool complete = false;
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            duplicates = new int[parameters[0]];
+
+            movement = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            //decremented so we use array indexing
+            current = --parameters[1];
+            --parameters[2];
+
+            if (parameters[1] != parameters[2])
+            {
+                while (true)
+                {
+                    if (duplicates[current] == 0)
+                    {
+                        ++duplicates[current];//keeps track if we are in a loop
+                        ++moves;
+                        if (movement[current] - 1 == parameters[2])//if we have reached our goal
+                        {
+                            complete = true;
+                            break;
+                        }
+                        current = movement[current] - 1;//move our position along
+                    }
+                    else
+                        break;
+                }
+
+                if (complete)
+                    Console.WriteLine(moves);
+                else
+                    Console.WriteLine("-1");
+            }
+            else
+                Console.WriteLine("0");
+            
+        }
+    }
+}
