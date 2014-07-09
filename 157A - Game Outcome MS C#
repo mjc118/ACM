@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[,] board;
+            int[] temp, col_sum, row_sum;
+            int dimensions, wins = 0;
+
+            dimensions = Convert.ToInt32(Console.ReadLine());
+
+            board = new int[dimensions, dimensions];
+            col_sum = new int[dimensions];
+            row_sum = new int[dimensions];
+
+            for (int i = 0; i < dimensions; ++i)
+            {
+                temp = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+                for (int j = 0; j < dimensions; ++j)
+                {
+                    board[i, j] = temp[j];
+                    row_sum[i] += board[i, j];//sum each row
+                }
+            }
+
+            for (int i = 0; i < dimensions; ++i)
+                for (int j = 0; j < dimensions; ++j)
+                    col_sum[i] += board[j, i];//sum each column
+
+            for (int i = 0; i < dimensions; ++i)
+                for (int j = 0; j < dimensions; ++j)
+                    if (col_sum[j] > row_sum[i])//check for a win
+                        ++wins;
+
+            Console.WriteLine(wins);
+                
+        }
+    }
+}
