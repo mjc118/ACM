@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int length;
+            int[] array;
+
+            length = Convert.ToInt32(Console.ReadLine());
+
+            array = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            var groups = array.GroupBy(v => v);
+            int mode = groups.Max(g => g.Count());
+            //find the mode and the # of spots in the array taken by that number
+
+            //if mode count is n, then you must have n - 1 
+            //more numbers to make sure no like numbers are adjacent
+            Console.WriteLine(length - mode >= mode - 1 ? "YES" : "NO");
+     
+        }
+    }
+}
