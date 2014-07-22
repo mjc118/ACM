@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            string initial;
+            int[] alphabet;
+            int AddedLetters, MaxVal;
+            double LinearSum, PartialSum, length, sum = 0;
+            initial = Console.ReadLine();
+
+            AddedLetters = Convert.ToInt32(Console.ReadLine());
+
+            alphabet = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            length = initial.Length;
+            for (int i = 0; i < length; ++i)
+            {
+                sum += (i + 1) * alphabet[Convert.ToInt32(initial[i] - 97)];
+            }
+
+            MaxVal = alphabet.Max();
+            //finds the sum of 1 through N where N = final string length 
+            LinearSum = ((1 + length + AddedLetters) * ((length + AddedLetters)/2));
+            //finds the sum of 1 through length where length = starting string length
+            PartialSum = ((1 + length) * (length / 2)); 
+            //see: finding sum of numbers 1 through N for better understanding
+
+            sum += Convert.ToDouble((LinearSum - PartialSum) * MaxVal);
+
+            Console.WriteLine(sum);
+        } 
+    }
+}
