@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] Cups, Medals;
+            int Shelves, TotalCups, TotalMedals;
+
+            Cups = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            Medals = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            Shelves = Convert.ToInt32(Console.ReadLine());
+
+            TotalCups = Cups.Sum();
+            TotalMedals = Medals.Sum();
+
+            Shelves -= (TotalMedals / 10);
+            Shelves -= (TotalCups / 5);
+
+            if (TotalCups % 5 != 0)
+                --Shelves;
+            if (TotalMedals % 10 != 0)
+                --Shelves;
+
+            Console.WriteLine(Shelves >= 0 ? "YES" : "NO");      
+        } 
+    }
+}
