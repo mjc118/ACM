@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters, children;
+            int i = -1;
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            children = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            while (true)
+            {
+                ++i;
+                
+                if (i == children.Length)
+                    i = 0;
+                
+                if (children.Sum() == children[i])
+                    break;
+                
+                if (children[i] != 0)
+                {
+                    children[i] -= parameters[1];
+                    
+                    if (children[i] < 0)
+                        children[i] = 0;
+                }
+            }
+
+            Console.WriteLine(i + 1);
+        } 
+    }
+}
