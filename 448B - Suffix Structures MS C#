@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            string startString, endString;
+            int original_Length, StartStrLength, i = 0;
+            bool possible = true, automaton = true;
+
+            startString = Console.ReadLine();
+            endString = Console.ReadLine();
+
+            original_Length = endString.Length;
+            StartStrLength = startString.Length;
+
+            //loop checks to see if our letters are in order even if there are extra ones
+            //used for cases like "abacaba" with "aaaa", so code says automaton and not "both"
+            for (int j = 0; j < original_Length - 1; ++j)
+            {
+                if (i >= StartStrLength - 1)
+                    break;
+                //search for letter, and make sure next letter is farther down from where we found previous one
+                if (startString.IndexOf(endString[j], i) > startString.IndexOf(endString[j + 1], startString.IndexOf(endString[j],i) + 1))
+                {
+                    automaton = false;
+                    break;
+                }
+                i = startString.IndexOf(endString[j], i) + 1;
+            }
+
+            if (original_Length > startString.Length)
+                Console.WriteLine("need tree");
+            else
+            {
+                if (startString.IndexOf(endString) != -1)
+                    Console.WriteLine("automaton");
+                else
+                {
+                    while (endString.Length != 0)
+                    {
+                        //makes sure our starting string has enough of specific characters for end string
+                        if (endString.Count(n => n == endString[0]) > startString.Count(n => n == endString[0]))
+                        {
+                            possible = false;
+                            break;
+                        }
+                        //gets rid of character just checked so we don't count the times a character appeared twice
+                        endString = endString.Replace(Convert.ToString(endString[0]), "");
+                    }
+
+                    if (possible && original_Length == startString.Length)
+                        Console.WriteLine("array");
+                    else if (possible && automaton)
+                        Console.WriteLine("automaton");
+                    else if (possible)
+                        Console.WriteLine("both");
+                    else
+                        Console.WriteLine("need tree");
+                }
+            }
+        } 
+    }
+}
