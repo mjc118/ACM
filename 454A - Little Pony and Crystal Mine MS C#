@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int input, numDiamond, numStar;
+            bool Reverse = false;
+            input = Convert.ToInt32(Console.ReadLine());
+            numDiamond = 1;
+            numStar = input - 1;
+
+            for (int i = 0; i < input; ++i)
+            {
+
+                for (int j = 0; j < numStar / 2; ++j)
+                    Console.Write("*");
+                for (int j = 0; j < numDiamond; ++j)
+                    Console.Write("D");
+                for (int j = 0; j < numStar / 2; ++j)
+                    Console.Write("*");
+                Console.WriteLine();
+
+                if (numDiamond == input)
+                    Reverse = !Reverse;
+                if (Reverse)
+                {
+                    numStar += 2;
+                    numDiamond -= 2;
+                }
+                else
+                {
+                    numStar -= 2;
+                    numDiamond += 2;
+                }
+            }
+        }
+    }
+}
+
