@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters, songs;
+            int time_left, i, jokes = 0;
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+            songs = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            time_left = parameters[1];
+
+            for (i = 0; i < parameters[0]; ++i)
+            {
+                if (time_left - songs[i] < 0)
+                    break;
+                else
+                    time_left -= songs[i];
+
+                for (int j = 0; j < 2; ++j)
+                    if (time_left - 5 < 0)
+                    {
+                        if(i != parameters[0] - 1)//if all the songs are not done
+                            i = parameters[0] + 1;
+                        break;
+                    }
+                    else
+                    {
+                        time_left -= 5;
+                        ++jokes;
+                    }
+            }
+
+            jokes += time_left / 5;//handles any extra minutes left over
+
+            Console.WriteLine(i == parameters[0] ? jokes.ToString() : "-1");
+        }
+    }
+}
+
