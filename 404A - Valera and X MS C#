@@ -1,0 +1,81 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int lines, LPos, RPos;
+            string[] matrix;
+            char Xletter, Fill_Letter;
+            bool possible = true;
+            lines = Convert.ToInt32(Console.ReadLine());
+
+            matrix = new string[lines];
+
+            for (int i = 0; i < lines; ++i)
+                matrix[i] = Console.ReadLine();
+
+            if (matrix[0].Distinct().Count() == 2)
+            {
+                Xletter = matrix[0][0];
+                Fill_Letter = matrix[0][1];
+                if (matrix[0].Count(f => f == Xletter) == 2 && matrix[0][0] == matrix[0][lines - 1])
+                {
+                    if (matrix[0].Count(f => f == Fill_Letter) != lines - 2)
+                        possible = false;
+                }
+                else
+                    possible = false;
+            }
+            else
+                possible = false;
+
+            LPos = 1;
+            RPos = lines - 2;
+            if (possible)
+            {
+                Xletter = matrix[0][0];//make sure the same two letters are used throughout entire 2D array
+                Fill_Letter = matrix[0][1];
+                for (int i = 1; i < lines; ++i)
+                {
+                    if (matrix[i].Distinct().Count() == 2 && matrix[i].Count(f => f == Xletter) == 2 && RPos != LPos) ;
+                    else if ((RPos == LPos && matrix[i].Count(f => f == Xletter) == 1) && matrix[i].Distinct().Count() == 2) ;
+                    else
+                        possible = false;
+
+                    if(possible)
+                        if (matrix[i][LPos] == Xletter && matrix[i][RPos] == Xletter)
+                        {
+                            if ((matrix[i].Count(f => f == Fill_Letter) == lines - 2 || RPos == LPos && matrix[i].Count(f => f == Fill_Letter) == lines - 1) && matrix[i][RPos - 1] == Fill_Letter) ;
+                            else
+                                possible = false;
+                        }
+                        else
+                            possible = false;
+
+                    if (!possible)
+                        break;
+
+                    if (i < lines / 2)
+                    {
+                        --RPos;
+                        ++LPos;
+                    }
+                    else
+                    {
+                        ++RPos;
+                        --LPos;
+                    }
+                }
+            }
+            Console.WriteLine(possible ? "YES" : "NO");
+        }
+    }
+}
+
