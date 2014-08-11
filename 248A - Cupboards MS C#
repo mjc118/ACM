@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int cupboards, seconds,  NumLeft = 0, NumRight = 0;
+            int[][] SetCupboards;
+            int[] Combinations = new int[4];
+
+            cupboards = Convert.ToInt32(Console.ReadLine());
+
+            SetCupboards = new int[cupboards][];
+
+            for(int i = 0; i < cupboards; ++i)
+                SetCupboards[i] = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            for (int i = 0; i < cupboards; ++i)
+            {
+                NumLeft += SetCupboards[i][0];
+                NumRight += SetCupboards[i][1];
+            }//count number of open cupboards and which sides are open
+
+            Combinations[0] = (cupboards - NumRight) + NumLeft;//open all right, close all left
+            Combinations[1] = (cupboards - NumLeft) + NumRight;//open all left, close all right
+            Combinations[2] = (cupboards - NumLeft) + (cupboards - NumRight);//open all right, open all left
+            Combinations[3] = NumLeft + NumRight;//close all left, close all right
+
+            seconds = Combinations.Min();//find min number of operations
+
+            Console.WriteLine(seconds);
+        }
+    }
+}
