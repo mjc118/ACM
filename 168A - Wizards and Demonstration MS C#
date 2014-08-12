@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            double[] Parameters;
+            double PercentPerPerson, WizardPercent;
+            int Clones = 0;
+            //Parameters[0] = Population, Parameters[1] = Wizards, Parameters[2] = Desired Percent
+
+            Parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToDouble(n)).ToArray();
+
+            PercentPerPerson = 1 / Parameters[0];
+            WizardPercent = Parameters[1] / Parameters[0];
+            Parameters[2] /= 100;//adjust number so it uses percentage
+
+            Parameters[2] -= WizardPercent;//take into account how much of the percent the wizards already take up
+            Clones = Convert.ToInt32(Parameters[2] / PercentPerPerson);//figure out how many clones are needed
+            Parameters[2] -= Clones * PercentPerPerson;
+
+            //if there is a partial percent needed, we need to add one more person
+            if (Parameters[2] < PercentPerPerson && Parameters[2] > 0)
+                ++Clones;
+
+            Console.WriteLine(Clones < 0 ? "0": Convert.ToString(Clones));
+        }
+    }
+}
