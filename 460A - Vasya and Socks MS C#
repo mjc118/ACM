@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int[] parameters;
+            int days = 0, multiple = 1;
+
+            parameters = Console.ReadLine().Split(' ').Select(n => Convert.ToInt32(n)).ToArray();
+
+            while (parameters[0] != 0)
+            {
+                --parameters[0];
+                ++days;
+
+                if (days / (multiple * parameters[1]) == 1)
+                {
+                    ++parameters[0];
+                    ++multiple;
+                }
+            }
+
+            Console.WriteLine(days);
+        }
+    }
+}
