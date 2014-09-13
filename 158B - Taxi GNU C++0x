@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+int main(){
+	int numTaxis, TaxisNeeded, temp;
+	vector<int> TaxiGroups;
+	//each spot represents Number of groups that comprise of 1,2,3, and 4 members
+	int NumGroups[] = { 0, 0, 0, 0 };
+
+	cin >> numTaxis;
+
+	for (int i = 0; i < numTaxis; ++i)
+	{
+		cin >> temp;
+		TaxiGroups.push_back(temp);
+	}
+
+	for (int i = 1; i <= 4; ++i)
+	{
+		NumGroups[i - 1] = count(TaxiGroups.begin(), TaxiGroups.end(), i);
+	}
+
+	TaxisNeeded = 0;
+
+	TaxisNeeded += NumGroups[3];//handles groups of 4
+	TaxisNeeded += NumGroups[2];//handles of groups of 3
+
+	NumGroups[0] -= NumGroups[2];//singles fill in groups of 3's spot in car
+	TaxisNeeded += NumGroups[1] / 2;//handles groups of 2
+	NumGroups[1] %= 2;
+
+	if (NumGroups[1] > 0){//handles if we had an odd number of 2's
+		++TaxisNeeded;
+		NumGroups[0] -= 2;
+	}
+
+	if (NumGroups[0] / 4 > 0)//incase NumGroups[0] is negative
+	{
+		TaxisNeeded += NumGroups[0] / 4;//handles any remaining group of ones
+	}
+	NumGroups[0] %= 4;//finds out if we have any ones left over that will not completely fill a car
+	if (NumGroups[0] > 0)
+		++TaxisNeeded;
+
+	cout << TaxisNeeded;
+	return 0;
+}
