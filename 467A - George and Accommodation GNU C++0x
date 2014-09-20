@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <vector>
+
+using namespace std;
+
+struct parameters{
+	int p;
+	int q;
+};
+
+int main(){
+	vector<parameters> dorms;
+	int numDorms, possibleDorms = 0;
+
+	cin >> numDorms;
+
+	for (int j = 0; j < numDorms; ++j){
+		parameters temp;
+		dorms.push_back(temp);
+		cin >> dorms[j].p >> dorms[j].q;
+		
+	}
+
+	for (int i = 0; i < numDorms; ++i)
+		if ((dorms[i].p + 2) <= dorms[i].q)
+			++possibleDorms;
+
+	cout << possibleDorms;
+	return 0;
+}
