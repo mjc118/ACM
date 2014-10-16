@@ -22,5 +22,5 @@ http://codeforces.com/problemset/problem/110/A
 
 The numbers and Letters should be in the title of the github submission.
 
-Problems Solved
+Problems Solved listed here
 https://github.com/mjc118/ACM
