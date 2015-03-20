@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+
+using namespace std;
+
+//split our input strings on '/'
+void Split(const string &, char, vector<string> &);
+
+int main(){
+	int NumberOfCommands;
+	string InputCommand;
+	vector<string> elements;//vector used to hold what our command is split into
+	vector<string> CurrentDirectory;//vector to keep track of our current Path
+	
+	cin >> NumberOfCommands;
+
+	for(int i = 0; i <= NumberOfCommands; ++i){	
+		getline(cin, InputCommand);		
+		
+		if(InputCommand[0] == 'p' && InputCommand[1] == 'w' &&
+		InputCommand[2] == 'd'){
+			cout << "/";
+			for(int j = 0; j < CurrentDirectory.size(); ++j)			{
+				cout << CurrentDirectory[j] << "/";		
+			}					
+			cout << endl;
+		}
+		else {
+			elements.clear();
+			//erase 'cd ' so it doesn't get added as a Path
+			InputCommand.erase(0,3);
+			//if the first character of the Path is a '/' it is a direct path from root
+			if(InputCommand[0] == '/'){ CurrentDirectory.clear(); }
+			
+			Split(InputCommand, '/', elements);			
+			
+			for(int j = 0; j < elements.size(); ++j){
+				if(elements[j] == ".."){
+					CurrentDirectory.pop_back();
+				}
+				else if(elements[j] != ""){
+					CurrentDirectory.push_back(elements[j]);
+				}
+			}		
+		}
+	}
+	return 0;
+}
+
+void Split(const string &s, char delim, vector<string> &elements){
+	stringstream ss(s);
+	string item;
+	while(getline(ss, item, delim)){
+		elements.push_back(item);	
+	}	
+}
